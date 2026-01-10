@@ -3,145 +3,412 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ThanLWinPay</title>
+  <title>ThanLWinPay | The Ultimate Super App</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
   <style>
+    :root {
+      --primary: #38bdf8;
+      --secondary: #a78bfa;
+      --accent: #2dd4bf;
+      --warning: #fbbf24;
+      --bg-dark: #020617;
+      --glass: rgba(15, 23, 42, 0.6);
+      --border: rgba(255, 255, 255, 0.08);
+    }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: "Inter", Arial, Helvetica, sans-serif;
-      background: radial-gradient(circle at top, #111827, #020617);
-      color: #e5e7eb;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--bg-dark);
+      color: #fff;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    /* --- ADVANCED BACKGROUND --- */
+    #particles-js {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .blob-bg {
+      position: fixed;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(56,189,248,0.15), transparent 70%);
+      filter: blur(80px);
+      z-index: 0;
+      animation: moveBlob 20s infinite alternate;
+    }
+
+    @keyframes moveBlob {
+      0% { top: -10%; left: -10%; }
+      100% { top: 80%; left: 70%; }
+    }
+
+    /* --- HERO SECTION --- */
+    .hero {
+      position: relative;
+      z-index: 10;
       min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 100px 24px;
+      perspective: 1000px;
+    }
+
+    .brand-pill {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      padding: 8px 20px;
+      border-radius: 100px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      backdrop-filter: blur(10px);
+      animation: fadeInUp 0.8s ease backwards;
+    }
+
+    h1 {
+      font-size: clamp(3rem, 12vw, 5.5rem);
+      font-weight: 800;
+      text-align: center;
+      line-height: 1;
+      margin-bottom: 20px;
+      background: linear-gradient(180deg, #fff 0%, var(--primary) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: fadeInUp 0.8s ease backwards 0.2s;
+    }
+
+    .hero p {
+      color: #94a3b8;
+      font-size: 1.2rem;
+      max-width: 600px;
+      text-align: center;
+      margin-bottom: 40px;
+      animation: fadeInUp 0.8s ease backwards 0.4s;
+    }
+
+    /* --- SERVICE GRID --- */
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 16px;
+      width: 100%;
+      max-width: 900px;
+      margin-bottom: 60px;
+      animation: fadeInUp 0.8s ease backwards 0.6s;
+    }
+
+    .service-item {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      padding: 24px;
+      border-radius: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      backdrop-filter: blur(12px);
+    }
+
+    .service-item:hover {
+      transform: translateY(-10px) scale(1.05);
+      background: rgba(56, 189, 248, 0.1);
+      border-color: var(--primary);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+
+    .service-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
+      background: linear-gradient(135deg, rgba(56,189,248,0.2), transparent);
+      color: var(--primary);
     }
 
-    /* animated background glow */
-    body::before {
-      content: "";
-      position: absolute;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(56,189,248,0.25), transparent 70%);
-      top: -200px;
-      right: -200px;
-      animation: float 8s ease-in-out infinite;
+    .service-item span {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #e2e8f0;
     }
 
-    @keyframes float {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(40px); }
-      100% { transform: translateY(0px); }
-    }
-
-    .container {
+    /* --- APP MOCKUP --- */
+    .mockup-container {
       position: relative;
-      max-width: 900px;
-      padding: 48px 28px;
-      text-align: center;
-      background: rgba(17, 24, 39, 0.65);
-      backdrop-filter: blur(12px);
-      border-radius: 24px;
-      box-shadow: 0 30px 80px rgba(0,0,0,0.6);
-      animation: fadeUp 1.2s ease forwards;
+      margin: 40px 0;
+      animation: zoomIn 1s cubic-bezier(0.2, 0.8, 0.2, 1) backwards 0.8s;
     }
 
-    @keyframes fadeUp {
+    .phone {
+      width: 280px;
+      height: 570px;
+      background: #000;
+      border: 10px solid #1e293b;
+      border-radius: 40px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 0 0 2px rgba(255,255,255,0.05), 0 50px 100px rgba(0,0,0,0.8);
+    }
+
+    .screen {
+      height: 100%;
+      background: #020617;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .app-card {
+      background: linear-gradient(135deg, #38bdf8, #818cf8);
+      border-radius: 20px;
+      padding: 20px;
+      color: #000;
+      position: relative;
+    }
+
+    .app-card::after {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%; width: 200%; height: 200%;
+      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent);
+      animation: shine 3s infinite;
+    }
+
+    @keyframes shine {
+      0% { transform: translateX(-100%) translateY(-100%); }
+      100% { transform: translateX(100%) translateY(100%); }
+    }
+
+    /* --- CTA BUTTON --- */
+    .download-btn {
+      position: relative;
+      padding: 20px 60px;
+      background: #fff;
+      color: #000;
+      border-radius: 100px;
+      font-weight: 800;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.1rem;
+      transition: all 0.3s ease;
+      overflow: hidden;
+      margin-top: 20px;
+      animation: fadeInUp 0.8s ease backwards 1s;
+    }
+
+    .download-btn:hover {
+      background: var(--primary);
+      transform: scale(1.05);
+      box-shadow: 0 0 30px rgba(56,189,248,0.5);
+    }
+
+    /* --- MARQUEE --- */
+    .marquee {
+      width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 40px 0;
+      opacity: 0.3;
+      user-select: none;
+    }
+
+    .marquee-content {
+      display: inline-block;
+      animation: marquee 30s linear infinite;
+      font-size: 3rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 10px;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* --- KEYFRAMES --- */
+    @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(40px); }
       to { opacity: 1; transform: translateY(0); }
     }
 
-    h1 {
-      font-size: 3.2rem;
-      margin-bottom: 20px;
-      letter-spacing: 1px;
-      background: linear-gradient(90deg, #38bdf8, #a78bfa);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: glow 3s ease-in-out infinite alternate;
+    @keyframes zoomIn {
+      from { opacity: 0; transform: scale(0.8) rotateX(20deg); }
+      to { opacity: 1; transform: scale(1) rotateX(0); }
     }
 
-    @keyframes glow {
-      from { filter: drop-shadow(0 0 6px rgba(56,189,248,0.4)); }
-      to { filter: drop-shadow(0 0 16px rgba(167,139,250,0.8)); }
+    /* --- UTILITIES --- */
+    .pulse {
+      animation: pulseGlow 2s infinite;
     }
 
-    p {
-      font-size: 1.15rem;
-      opacity: 0.9;
-      margin-bottom: 40px;
-      line-height: 1.7;
-      color: #d1d5db;
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 0 0 rgba(56,189,248,0.4); }
+      70% { box-shadow: 0 0 0 15px rgba(56,189,248,0); }
+      100% { box-shadow: 0 0 0 0 rgba(56,189,248,0); }
     }
 
-    .download-btn {
-      position: relative;
-      display: inline-block;
-      padding: 18px 42px;
-      font-size: 1.15rem;
-      font-weight: 600;
-      color: #020617;
-      background: linear-gradient(90deg, #38bdf8, #a78bfa);
-      border-radius: 999px;
-      text-decoration: none;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: 0 20px 40px rgba(56,189,248,0.35);
-      overflow: hidden;
-    }
-
-    .download-btn::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
-      transform: translateX(-100%);
-      transition: transform 0.6s ease;
-    }
-
-    .download-btn:hover::after {
-      transform: translateX(100%);
-    }
-
-    .download-btn:hover {
-      transform: translateY(-4px) scale(1.03);
-      box-shadow: 0 30px 70px rgba(167,139,250,0.6);
-    }
-
-    footer {
-      margin-top: 56px;
-      font-size: 0.9rem;
-      opacity: 0.6;
-      color: #9ca3af;
-    }
-
-    @media (max-width: 600px) {
-      h1 { font-size: 2.4rem; }
-      p { font-size: 1.05rem; }
+    @media (max-width: 768px) {
+      .service-grid { grid-template-columns: repeat(2, 1fr); }
+      h1 { font-size: 3.5rem; }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>ThanLWinPay</h1>
-    <p>
-      A fast, secure, and modern digital payment experience.
-      Download TThanLWinPay and manage your payments effortlessly.
-    </p>
 
-    <!-- Replace the href value with your direct download link -->
-    <a
-      class="download-btn"
-      href="https://pay.kyawgyi.club/public/thanlwinpay.apk"
-      download
-    >
-      Download App
+  <div class="blob-bg"></div>
+  <div id="particles-js"></div>
+
+  <section class="hero">
+    <div class="brand-pill">
+      <i data-lucide="shield-check" size="18"></i> Secure MMK Ecosystem
+    </div>
+
+    <h1>All-in-One <br><span style="color: var(--primary)">Super Wallet</span></h1>
+    <p>The ultimate financial companion. Pay bills, topup games, and manage your Myanmar Kyat seamlessly in one place.</p>
+
+    <!-- Services Grid -->
+    <div class="service-grid">
+      <div class="service-item">
+        <div class="service-icon"><i data-lucide="wifi"></i></div>
+        <span>Wifi Bill</span>
+      </div>
+      <div class="service-item">
+        <div class="service-icon"><i data-lucide="zap"></i></div>
+        <span>Electric Bill</span>
+      </div>
+      <div class="service-item">
+        <div class="service-icon"><i data-lucide="smartphone"></i></div>
+        <span>Mobile Topup</span>
+      </div>
+      <div class="service-item">
+        <div class="service-icon"><i data-lucide="gamepad-2"></i></div>
+        <span>Game Items</span>
+      </div>
+      <div class="service-item">
+        <div class="service-icon"><i data-lucide="shopping-cart"></i></div>
+        <span>Online Pay</span>
+      </div>
+      <div class="service-item">
+        <div class="service-icon"><i data-lucide="arrow-left-right"></i></div>
+        <span>Easy Transfer</span>
+      </div>
+    </div>
+
+    <!-- Mobile Mockup -->
+    <div class="mockup-container">
+      <div class="phone">
+        <div class="screen">
+          <div style="display:flex; justify-content: space-between; align-items:center; opacity:0.5; font-size: 0.7rem;">
+            <span>ThanLWinPay</span>
+            <div style="display:flex; gap:5px;"><i data-lucide="signal" size="12"></i><i data-lucide="battery" size="12"></i></div>
+          </div>
+          
+          <div class="app-card">
+            <div style="font-size: 0.6rem; font-weight: 700; opacity: 0.8;">CURRENT BALANCE</div>
+            <div style="font-size: 1.5rem; font-weight: 800; margin: 4px 0;">8,450,000 <span style="font-size: 0.7rem">MMK</span></div>
+            <div style="font-size: 0.6rem; opacity: 0.6;">KYAW GYI | VIP SILVER</div>
+          </div>
+
+          <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:10px;">
+            <div style="height:50px; background:rgba(255,255,255,0.05); border-radius:12px; display:flex; align-items:center; justify-content:center"><i data-lucide="plus" size="18"></i></div>
+            <div style="height:50px; background:rgba(255,255,255,0.05); border-radius:12px; display:flex; align-items:center; justify-content:center"><i data-lucide="qr-code" size="18"></i></div>
+            <div style="height:50px; background:rgba(255,255,255,0.05); border-radius:12px; display:flex; align-items:center; justify-content:center"><i data-lucide="history" size="18"></i></div>
+          </div>
+
+          <div style="font-weight: 700; font-size: 0.8rem; margin-top: 10px;">Favorites</div>
+          <div style="display:flex; gap:12px;">
+             <div style="width:40px; height:40px; border-radius:50%; background: #fbbf24; opacity: 0.2"></div>
+             <div style="width:40px; height:40px; border-radius:50%; background: #38bdf8; opacity: 0.2"></div>
+             <div style="width:40px; height:40px; border-radius:50%; background: #2dd4bf; opacity: 0.2"></div>
+             <div style="width:40px; height:40px; border-radius:50%; background: #a78bfa; opacity: 0.2"></div>
+          </div>
+
+          <div style="flex:1; background:rgba(255,255,255,0.03); border-radius:20px 20px 0 0; margin-top:10px; padding:15px;">
+            <div style="height:8px; width:40%; background:rgba(255,255,255,0.1); border-radius:4px; margin-bottom:15px;"></div>
+            <div style="display:flex; gap:10px; align-items:center; margin-bottom:15px;">
+               <div style="width:30px; height:30px; background:rgba(255,255,255,0.05); border-radius:8px;"></div>
+               <div style="flex:1; height:6px; background:rgba(255,255,255,0.05); border-radius:3px;"></div>
+            </div>
+            <div style="display:flex; gap:10px; align-items:center;">
+               <div style="width:30px; height:30px; background:rgba(255,255,255,0.05); border-radius:8px;"></div>
+               <div style="flex:1; height:6px; background:rgba(255,255,255,0.05); border-radius:3px;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Download Button -->
+    <a href="https://pay.kyawgyi.club/public/thanlwinpay.apk" class="download-btn pulse" download>
+      <i data-lucide="download"></i> Download APK Now
     </a>
+  </section>
 
-    <footer>
-      © 2026 ThanLWinPay. All rights reserved.
-    </footer>
+  <!-- Scrolling Marquee -->
+  <div class="marquee">
+    <div class="marquee-content">
+      WIFI BILLS • ELECTRICITY • GAME TOPUP • MOBILE CREDIT • FAST TRANSFER • SECURE • WIFI BILLS • ELECTRICITY • GAME TOPUP • MOBILE CREDIT • FAST TRANSFER • SECURE •
+    </div>
   </div>
+
+  <footer style="padding: 60px 24px; text-align: center; border-top: 1px solid var(--border); opacity: 0.5; font-size: 0.8rem;">
+    <p>ThanLWinPay Ecosystem © 2026 • Your Trusted Partner in Myanmar</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+  <script>
+    lucide.createIcons();
+
+    // High Density Particle Field
+    particlesJS("particles-js", {
+      "particles": {
+        "number": { "value": 100, "density": { "enable": true, "value_area": 800 } },
+        "color": { "value": ["#38bdf8", "#a78bfa", "#2dd4bf"] },
+        "shape": { "type": "circle" },
+        "opacity": { "value": 0.4, "random": true },
+        "size": { "value": 2, "random": true },
+        "line_linked": { "enable": true, "distance": 150, "color": "#38bdf8", "opacity": 0.1, "width": 1 },
+        "move": { "enable": true, "speed": 1.5, "direction": "none", "random": true, "out_mode": "out" }
+      },
+      "interactivity": {
+        "events": { "onhover": { "enable": true, "mode": "grab" } },
+        "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 0.5 } } }
+      }
+    });
+
+    // Simple Mouse Follower effect on Blob
+    const blob = document.querySelector('.blob-bg');
+    document.addEventListener('mousemove', (e) => {
+      const x = e.clientX;
+      const y = e.clientY;
+      blob.style.transform = `translate(${x/20}px, ${y/20}px)`;
+    });
+  </script>
 </body>
 </html>
