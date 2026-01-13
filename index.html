@@ -3,13 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ThanLWinPay | The Ultimate Super App</title>
-  <!-- Google Fonts -->
+  <title>ThanLWinPay | Secure Myanmar Digital Ecosystem</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://unpkg.com/scrollreveal"></script>
   
   <style>
     :root {
@@ -18,8 +17,9 @@
       --accent: #2dd4bf;
       --warning: #fbbf24;
       --bg-dark: #020617;
-      --glass: rgba(15, 23, 42, 0.6);
-      --border: rgba(255, 255, 255, 0.08);
+      --glass: rgba(15, 23, 42, 0.7);
+      --glass-lighter: rgba(255, 255, 255, 0.03);
+      --border: rgba(255, 255, 255, 0.1);
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -30,251 +30,90 @@
       color: #fff;
       overflow-x: hidden;
       scroll-behavior: smooth;
+      line-height: 1.6;
     }
 
-    /* --- ADVANCED BACKGROUND --- */
-    #particles-js {
-      position: fixed;
-      inset: 0;
-      z-index: 1;
-      pointer-events: none;
-    }
-
+    /* --- BACKGROUND ELEMENTS --- */
+    #particles-js { position: fixed; inset: 0; z-index: 1; pointer-events: none; }
     .blob-bg {
-      position: fixed;
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(56,189,248,0.15), transparent 70%);
-      filter: blur(80px);
-      z-index: 0;
-      animation: moveBlob 20s infinite alternate;
+      position: fixed; width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(56,189,248,0.12), transparent 70%);
+      filter: blur(80px); z-index: 0; top: -10%; left: -10%;
     }
 
-    @keyframes moveBlob {
-      0% { top: -10%; left: -10%; }
-      100% { top: 80%; left: 70%; }
+    /* --- NAVIGATION --- */
+    nav {
+      position: fixed; top: 0; width: 100%; padding: 20px 5%;
+      display: flex; justify-content: space-between; align-items: center;
+      z-index: 1000; backdrop-filter: blur(15px); border-bottom: 1px solid var(--border);
     }
+    .logo { font-weight: 800; font-size: 1.4rem; color: var(--primary); letter-spacing: -1px; }
+    .nav-links { display: flex; gap: 24px; }
+    .nav-links a { color: #94a3b8; text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: 0.3s; }
+    .nav-links a:hover { color: var(--primary); }
 
-    /* --- HERO SECTION --- */
-    .hero {
-      position: relative;
-      z-index: 10;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 100px 24px;
-      perspective: 1000px;
-    }
-
+    /* --- SECTIONS --- */
+    section { position: relative; z-index: 10; padding: 100px 5%; max-width: 1200px; margin: 0 auto; }
+    
+    /* --- HERO --- */
+    .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
     .brand-pill {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--border);
-      padding: 8px 20px;
-      border-radius: 100px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--primary);
-      margin-bottom: 24px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      backdrop-filter: blur(10px);
-      animation: fadeInUp 0.8s ease backwards;
+      background: var(--glass-lighter); border: 1px solid var(--border);
+      padding: 8px 20px; border-radius: 100px; font-size: 0.85rem;
+      color: var(--primary); margin-bottom: 24px; display: inline-flex; align-items: center; gap: 8px;
     }
-
-    h1 {
-      font-size: clamp(3rem, 12vw, 5.5rem);
-      font-weight: 800;
-      text-align: center;
-      line-height: 1;
-      margin-bottom: 20px;
-      background: linear-gradient(180deg, #fff 0%, var(--primary) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: fadeInUp 0.8s ease backwards 0.2s;
+    h1 { font-size: clamp(3rem, 10vw, 5rem); font-weight: 800; line-height: 1.1; margin-bottom: 20px; }
+    .gradient-text { background: linear-gradient(90deg, #fff, var(--primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    
+    /* --- GRID --- */
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 50px; }
+    .card {
+      background: var(--glass); border: 1px solid var(--border); padding: 40px; border-radius: 32px;
+      transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; overflow: hidden;
     }
+    .card:hover { transform: translateY(-10px); border-color: var(--primary); background: rgba(56, 189, 248, 0.05); }
 
-    .hero p {
-      color: #94a3b8;
-      font-size: 1.2rem;
-      max-width: 600px;
-      text-align: center;
-      margin-bottom: 40px;
-      animation: fadeInUp 0.8s ease backwards 0.4s;
-    }
+    /* --- INFO SECTIONS --- */
+    .section-title { font-size: 2.5rem; margin-bottom: 20px; font-weight: 800; }
+    .about-content { color: #94a3b8; font-size: 1.1rem; max-width: 800px; }
 
-    /* --- SERVICE GRID --- */
-    .service-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 16px;
-      width: 100%;
-      max-width: 900px;
-      margin-bottom: 60px;
-      animation: fadeInUp 0.8s ease backwards 0.6s;
-    }
+    /* --- TERMS LIST --- */
+    .terms-box { background: var(--glass-lighter); padding: 30px; border-radius: 24px; border: 1px solid var(--border); height: 400px; overflow-y: auto; text-align: left; }
+    .terms-item { margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .terms-item h4 { color: var(--primary); margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+    .terms-item p { font-size: 0.95rem; color: #cbd5e1; }
 
-    .service-item {
-      background: var(--glass);
-      border: 1px solid var(--border);
-      padding: 24px;
-      border-radius: 24px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 12px;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      backdrop-filter: blur(12px);
-    }
-
-    .service-item:hover {
-      transform: translateY(-10px) scale(1.05);
-      background: rgba(56, 189, 248, 0.1);
-      border-color: var(--primary);
-      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-    }
-
-    .service-icon {
-      width: 50px;
-      height: 50px;
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(135deg, rgba(56,189,248,0.2), transparent);
-      color: var(--primary);
-    }
-
-    .service-item span {
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: #e2e8f0;
-    }
-
-    /* --- APP MOCKUP --- */
-    .mockup-container {
-      position: relative;
-      margin: 40px 0;
-      animation: zoomIn 1s cubic-bezier(0.2, 0.8, 0.2, 1) backwards 0.8s;
-    }
-
+    /* --- MOCKUP --- */
+    .mockup-container { perspective: 1000px; margin-bottom: 40px; }
     .phone {
-      width: 280px;
-      height: 570px;
-      background: #000;
-      border: 10px solid #1e293b;
-      border-radius: 40px;
-      overflow: hidden;
-      position: relative;
-      box-shadow: 0 0 0 2px rgba(255,255,255,0.05), 0 50px 100px rgba(0,0,0,0.8);
+      width: 280px; height: 570px; background: #000; border: 12px solid #1e293b;
+      border-radius: 45px; position: relative; transform: rotateY(-10deg) rotateX(5deg);
+      box-shadow: 20px 20px 60px rgba(0,0,0,0.5); transition: 0.5s;
     }
+    .phone:hover { transform: rotateY(0deg) rotateX(0deg) scale(1.02); }
+    .screen { height: 100%; background: #020617; padding: 20px; display: flex; flex-direction: column; gap: 15px; }
 
-    .screen {
-      height: 100%;
-      background: #020617;
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
+    /* --- BUTTONS --- */
+    .btn-primary {
+      padding: 18px 45px; background: #fff; color: #000; border-radius: 100px;
+      font-weight: 800; text-decoration: none; display: inline-flex; align-items: center;
+      gap: 12px; transition: 0.3s; margin-top: 30px;
     }
+    .btn-primary:hover { background: var(--primary); transform: scale(1.05); box-shadow: 0 10px 30px rgba(56,189,248,0.4); }
 
-    .app-card {
-      background: linear-gradient(135deg, #38bdf8, #818cf8);
-      border-radius: 20px;
-      padding: 20px;
-      color: #000;
-      position: relative;
-    }
+    /* --- FOOTER --- */
+    footer { padding: 80px 5%; background: rgba(0,0,0,0.3); border-top: 1px solid var(--border); }
+    .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; text-align: left; }
+    .dev-tag { background: linear-gradient(45deg, #1e293b, #0f172a); padding: 20px; border-radius: 16px; border: 1px solid var(--border); }
 
-    .app-card::after {
-      content: '';
-      position: absolute;
-      top: -50%; left: -50%; width: 200%; height: 200%;
-      background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent);
-      animation: shine 3s infinite;
-    }
-
-    @keyframes shine {
-      0% { transform: translateX(-100%) translateY(-100%); }
-      100% { transform: translateX(100%) translateY(100%); }
-    }
-
-    /* --- CTA BUTTON --- */
-    .download-btn {
-      position: relative;
-      padding: 20px 60px;
-      background: #fff;
-      color: #000;
-      border-radius: 100px;
-      font-weight: 800;
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 1.1rem;
-      transition: all 0.3s ease;
-      overflow: hidden;
-      margin-top: 20px;
-      animation: fadeInUp 0.8s ease backwards 1s;
-    }
-
-    .download-btn:hover {
-      background: var(--primary);
-      transform: scale(1.05);
-      box-shadow: 0 0 30px rgba(56,189,248,0.5);
-    }
-
-    /* --- MARQUEE --- */
-    .marquee {
-      width: 100%;
-      overflow: hidden;
-      white-space: nowrap;
-      padding: 40px 0;
-      opacity: 0.3;
-      user-select: none;
-    }
-
-    .marquee-content {
-      display: inline-block;
-      animation: marquee 30s linear infinite;
-      font-size: 3rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 10px;
-    }
-
-    @keyframes marquee {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
-    }
-
-    /* --- KEYFRAMES --- */
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(40px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes zoomIn {
-      from { opacity: 0; transform: scale(0.8) rotateX(20deg); }
-      to { opacity: 1; transform: scale(1) rotateX(0); }
-    }
-
-    /* --- UTILITIES --- */
-    .pulse {
-      animation: pulseGlow 2s infinite;
-    }
-
-    @keyframes pulseGlow {
-      0% { box-shadow: 0 0 0 0 rgba(56,189,248,0.4); }
-      70% { box-shadow: 0 0 0 15px rgba(56,189,248,0); }
-      100% { box-shadow: 0 0 0 0 rgba(56,189,248,0); }
-    }
+    /* --- ANIMATIONS --- */
+    @keyframes pulse { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
+    .status-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; display: inline-block; animation: pulse 2s infinite; }
 
     @media (max-width: 768px) {
-      .service-grid { grid-template-columns: repeat(2, 1fr); }
-      h1 { font-size: 3.5rem; }
+      .nav-links { display: none; }
+      h1 { font-size: 3rem; }
+      .section-title { font-size: 1.8rem; }
     }
   </style>
 </head>
@@ -283,131 +122,139 @@
   <div class="blob-bg"></div>
   <div id="particles-js"></div>
 
-  <section class="hero">
+  <nav>
+    <div class="logo">THAN LWIN PAY</div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#terms">Terms</a>
+    </div>
+    <div style="font-size: 0.8rem; font-weight: 700;"><span class="status-dot"></span> v1.0.4-Stable</div>
+  </nav>
+
+  <section class="hero" id="home">
     <div class="brand-pill">
-      <i data-lucide="shield-check" size="18"></i> Secure MMK Ecosystem
+      <i data-lucide="shield-check" size="16"></i> Secured by AnyaGameShop Ecosystem
     </div>
-
-    <h1>All-in-One <br><span style="color: var(--primary)">Super Wallet</span></h1>
-    <p>The ultimate financial companion. Pay bills, topup games, and manage your Myanmar Kyat seamlessly in one place.</p>
-
-    <!-- Services Grid -->
-    <div class="service-grid">
-      <div class="service-item">
-        <div class="service-icon"><i data-lucide="wifi"></i></div>
-        <span>Wifi Bill</span>
-      </div>
-      <div class="service-item">
-        <div class="service-icon"><i data-lucide="zap"></i></div>
-        <span>Electric Bill</span>
-      </div>
-      <div class="service-item">
-        <div class="service-icon"><i data-lucide="smartphone"></i></div>
-        <span>Mobile Topup</span>
-      </div>
-      <div class="service-item">
-        <div class="service-icon"><i data-lucide="gamepad-2"></i></div>
-        <span>Game Items</span>
-      </div>
-      <div class="service-item">
-        <div class="service-icon"><i data-lucide="shopping-cart"></i></div>
-        <span>Online Pay</span>
-      </div>
-      <div class="service-item">
-        <div class="service-icon"><i data-lucide="arrow-left-right"></i></div>
-        <span>Easy Transfer</span>
-      </div>
-    </div>
-
-    <!-- Mobile Mockup -->
+    <h1>The Only <span class="gradient-text">Super App</span> <br>You Need in Myanmar.</h1>
+    <p style="color: #94a3b8; max-width: 650px; margin: 20px auto 40px;">Manage your Myanmar Kyat with military-grade security. From daily bills to gaming top-ups, experience the fastest digital wallet in the country.</p>
+    
     <div class="mockup-container">
-      <div class="phone">
-        <div class="screen">
-          <div style="display:flex; justify-content: space-between; align-items:center; opacity:0.5; font-size: 0.7rem;">
-            <span>ThanLWinPay</span>
-            <div style="display:flex; gap:5px;"><i data-lucide="signal" size="12"></i><i data-lucide="battery" size="12"></i></div>
-          </div>
-          
-          <div class="app-card">
-            <div style="font-size: 0.6rem; font-weight: 700; opacity: 0.8;">CURRENT BALANCE</div>
-            <div style="font-size: 1.5rem; font-weight: 800; margin: 4px 0;">8,450,000 <span style="font-size: 0.7rem">MMK</span></div>
-            <div style="font-size: 0.6rem; opacity: 0.6;">KYAW GYI | VIP SILVER</div>
-          </div>
-
-          <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:10px;">
-            <div style="height:50px; background:rgba(255,255,255,0.05); border-radius:12px; display:flex; align-items:center; justify-content:center"><i data-lucide="plus" size="18"></i></div>
-            <div style="height:50px; background:rgba(255,255,255,0.05); border-radius:12px; display:flex; align-items:center; justify-content:center"><i data-lucide="qr-code" size="18"></i></div>
-            <div style="height:50px; background:rgba(255,255,255,0.05); border-radius:12px; display:flex; align-items:center; justify-content:center"><i data-lucide="history" size="18"></i></div>
-          </div>
-
-          <div style="font-weight: 700; font-size: 0.8rem; margin-top: 10px;">Favorites</div>
-          <div style="display:flex; gap:12px;">
-             <div style="width:40px; height:40px; border-radius:50%; background: #fbbf24; opacity: 0.2"></div>
-             <div style="width:40px; height:40px; border-radius:50%; background: #38bdf8; opacity: 0.2"></div>
-             <div style="width:40px; height:40px; border-radius:50%; background: #2dd4bf; opacity: 0.2"></div>
-             <div style="width:40px; height:40px; border-radius:50%; background: #a78bfa; opacity: 0.2"></div>
-          </div>
-
-          <div style="flex:1; background:rgba(255,255,255,0.03); border-radius:20px 20px 0 0; margin-top:10px; padding:15px;">
-            <div style="height:8px; width:40%; background:rgba(255,255,255,0.1); border-radius:4px; margin-bottom:15px;"></div>
-            <div style="display:flex; gap:10px; align-items:center; margin-bottom:15px;">
-               <div style="width:30px; height:30px; background:rgba(255,255,255,0.05); border-radius:8px;"></div>
-               <div style="flex:1; height:6px; background:rgba(255,255,255,0.05); border-radius:3px;"></div>
+        <div class="phone">
+            <div class="screen">
+                <div style="height: 120px; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 20px; padding: 20px; text-align: left;">
+                    <p style="font-size: 0.6rem; opacity: 0.8; font-weight: 700;">TOTAL BALANCE</p>
+                    <h2 style="font-size: 1.6rem;">8,450,000 <small style="font-size: 0.7rem;">MMK</small></h2>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
+                    <div style="height: 60px; background: var(--glass-lighter); border-radius: 12px; display: flex; align-items: center; justify-content: center;"><i data-lucide="send" size="20"></i></div>
+                    <div style="height: 60px; background: var(--glass-lighter); border-radius: 12px; display: flex; align-items: center; justify-content: center;"><i data-lucide="wallet" size="20"></i></div>
+                    <div style="height: 60px; background: var(--glass-lighter); border-radius: 12px; display: flex; align-items: center; justify-content: center;"><i data-lucide="scan-line" size="20"></i></div>
+                </div>
+                <div style="flex:1; border-radius: 20px 20px 0 0; background: var(--glass-lighter); padding: 15px;">
+                    <p style="font-size: 0.7rem; font-weight: 700; margin-bottom: 10px; opacity: 0.5;">Recent Activities</p>
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                        <div style="width: 30px; height: 30px; background: var(--primary); border-radius: 8px; opacity: 0.2;"></div>
+                        <div style="flex:1; height: 10px; background: var(--border); margin: 10px; border-radius: 5px;"></div>
+                    </div>
+                </div>
             </div>
-            <div style="display:flex; gap:10px; align-items:center;">
-               <div style="width:30px; height:30px; background:rgba(255,255,255,0.05); border-radius:8px;"></div>
-               <div style="flex:1; height:6px; background:rgba(255,255,255,0.05); border-radius:3px;"></div>
-            </div>
-          </div>
         </div>
-      </div>
     </div>
 
-    <!-- Download Button -->
-    <a href="https://pay.kyawgyi.club/public/thanlwinpay.apk" class="download-btn pulse" download>
+    <a href="https://pay.kyawgyi.club/public/thanlwinpay.apk" class="btn-primary">
       <i data-lucide="download"></i> Download APK Now
     </a>
   </section>
 
-  <!-- Scrolling Marquee -->
-  <div class="marquee">
-    <div class="marquee-content">
-      WIFI BILLS • ELECTRICITY • GAME TOPUP • MOBILE CREDIT • FAST TRANSFER • SECURE • WIFI BILLS • ELECTRICITY • GAME TOPUP • MOBILE CREDIT • FAST TRANSFER • SECURE •
+  <section id="about">
+    <div class="card" style="text-align: center; border: 1px solid var(--primary);">
+        <h2 class="section-title">About ThanLWinPay</h2>
+        <p class="about-content" style="margin: 0 auto;">
+            Than Lwin Pay is a next-generation Digital Payment Solution specifically designed for the Myanmar market. We bridge the gap between traditional currency and the digital economy, providing a seamless, high-speed interface for all your financial needs. 
+            <br><br>
+            Backed by the <b>anyagameshop</b> project infrastructure, we ensure that every transaction is encrypted and every MMK is accounted for.
+        </p>
     </div>
-  </div>
+  </section>
 
-  <footer style="padding: 60px 24px; text-align: center; border-top: 1px solid var(--border); opacity: 0.5; font-size: 0.8rem;">
-    <p>ThanLWinPay Ecosystem © 2026 • Your Trusted Partner in Myanmar</p>
+  <section id="terms">
+    <h2 class="section-title">Terms & Conditions</h2>
+    <p style="color: #94a3b8; margin-bottom: 30px;">စည်းကမ်းနှင့် သတ်မှတ်ချက်များကို သေချာစွာ ဖတ်ရှုပေးပါ။</p>
+    
+    <div class="terms-box">
+        <div class="terms-item">
+            <h4><i data-lucide="info"></i> 1. Service Definition</h4>
+            <p>Than Lwin Pay သည် ငွေလွှဲ၊ ငွေပေးချေခြင်း၊ ဖုန်းဘေလ်ဖြည့်ခြင်းနှင့် အခြားသော ဝန်ဆောင်မှုများအတွက် ဖန်တီးထားသော Digital Payment Application ဖြစ်ပါသည်။</p>
+        </div>
+        <div class="terms-item">
+            <h4><i data-lucide="user-plus"></i> 2. Account Registration</h4>
+            <p>အသုံးပြုသူသည် မိမိကိုယ်ပိုင် ဖုန်းနံပါတ်ဖြင့် မှန်ကန်စွာ အသုံးပြုရမည်။ လူတစ်ဦးလျှင် Account တစ်ခုသာ အသုံးပြုခွင့်ရှိသည်။ မမှန်ကန်သော အချက်အလက်များဖြင့် ဖွင့်ထားသော Account များကို ပိတ်သိမ်းနိုင်သည်။</p>
+        </div>
+        <div class="terms-item">
+            <h4><i data-lucide="alert-triangle"></i> 3. Restricted Use</h4>
+            <p>တရားမဝင် လုပ်ရပ်များအတွက် မအသုံးပြုရ။ ငွေကြေးလိမ်လည်မှု၊ ခိုးယူမှု၊ မမှန်ကန်သော လုပ်ရပ်များ မပြုလုပ်ရ။ App စနစ်ကို ဖျက်ဆီးရန်၊ ချိုးဖောက်ရန် မကြိုးစားရ။</p>
+        </div>
+        <div class="terms-item">
+            <h4><i data-lucide="banknote"></i> 4. Fees & Transfers</h4>
+            <p>Account to Account ငွေလွှဲခြင်း – အခမဲ့ (Free)။ Agent မှ Cash Out ပြုလုပ်ရာတွင် 0.5% အခကြေးငွေ ကောက်ခံပါသည်။ User မှားယွင်းစွာ ငွေလွှဲခြင်းအတွက် Than Lwin Pay မှ တာဝန်မယူပါ။</p>
+        </div>
+        <div class="terms-item">
+            <h4><i data-lucide="shield-check"></i> 5. Privacy</h4>
+            <p>User အချက်အလက်များကို လုံခြုံစွာ သိမ်းဆည်းထားမည်။ User ခွင့်ပြုချက်မရှိဘဲ Third Party သို့ မမျှဝေပါ။</p>
+        </div>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <div class="footer-grid">
+      <div>
+        <h3 style="margin-bottom: 20px; color: var(--primary);">ThanLWinPay</h3>
+        <p style="color: #64748b; font-size: 0.9rem;">The most trusted Super App ecosystem in Myanmar. Build for the people, by the people.</p>
+      </div>
+      
+      <div class="dev-tag">
+        <h4 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; color: var(--accent);">Developer</h4>
+        <p style="font-weight: 800; font-size: 1.1rem;">Rez</p>
+        <p style="font-size: 0.8rem; opacity: 0.6;">Project ID: TZ-132</p>
+      </div>
+
+    </div>
+    
+    <div style="margin-top: 60px; padding-top: 30px; border-top: 1px solid var(--border); text-align: center; font-size: 0.8rem; color: #475569;">
+        ThanLWinPay Ecosystem © 2026 • Secure & Reliable
+    </div>
   </footer>
 
-  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
   <script>
     lucide.createIcons();
 
-    // High Density Particle Field
+    // Scroll Reveal Config
+    ScrollReveal().reveal('.card, .section-title, .about-content, .terms-box', {
+        delay: 200,
+        distance: '50px',
+        origin: 'bottom',
+        duration: 1000,
+        interval: 100
+    });
+
     particlesJS("particles-js", {
       "particles": {
-        "number": { "value": 100, "density": { "enable": true, "value_area": 800 } },
-        "color": { "value": ["#38bdf8", "#a78bfa", "#2dd4bf"] },
-        "shape": { "type": "circle" },
-        "opacity": { "value": 0.4, "random": true },
-        "size": { "value": 2, "random": true },
+        "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+        "color": { "value": "#38bdf8" },
+        "opacity": { "value": 0.2 },
+        "size": { "value": 2 },
         "line_linked": { "enable": true, "distance": 150, "color": "#38bdf8", "opacity": 0.1, "width": 1 },
-        "move": { "enable": true, "speed": 1.5, "direction": "none", "random": true, "out_mode": "out" }
-      },
-      "interactivity": {
-        "events": { "onhover": { "enable": true, "mode": "grab" } },
-        "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 0.5 } } }
+        "move": { "enable": true, "speed": 1 }
       }
     });
 
-    // Simple Mouse Follower effect on Blob
+    // Blob Movement
     const blob = document.querySelector('.blob-bg');
     document.addEventListener('mousemove', (e) => {
-      const x = e.clientX;
-      const y = e.clientY;
-      blob.style.transform = `translate(${x/20}px, ${y/20}px)`;
+      blob.style.left = `${e.clientX - 300}px`;
+      blob.style.top = `${e.clientY - 300}px`;
     });
   </script>
 </body>
