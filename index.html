@@ -1,261 +1,278 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ThanLWinPay | Secure Myanmar Digital Ecosystem</title>
+  <title>ThanLWinPay | All-in-One Myanmar Digital Services</title>
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,400&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+  
   <script src="https://unpkg.com/lucide@latest"></script>
   <script src="https://unpkg.com/scrollreveal"></script>
   
   <style>
     :root {
-      --primary: #38bdf8;
-      --secondary: #a78bfa;
-      --accent: #2dd4bf;
-      --warning: #fbbf24;
-      --bg-dark: #020617;
-      --glass: rgba(15, 23, 42, 0.7);
-      --glass-lighter: rgba(255, 255, 255, 0.03);
-      --border: rgba(255, 255, 255, 0.1);
+      --bg-primary: #FAF7F2;      
+      --bg-secondary: #F0EBE3;    
+      --bg-card: #FFFFFF;
+      --text-primary: #2C1810;    
+      --text-secondary: #6B5744;
+      --text-muted: #9A8B7A;
+      --accent: #C45D3E;          
+      --accent-light: #E8A590;
+      --accent-bg: #FDF0EC;
+      --border: #E2D9CE;
+      --shadow-md: 0 4px 16px rgba(44,24,16,0.08);
+      --shadow-lg: 0 8px 32px rgba(44,24,16,0.1);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      background-color: var(--bg-dark);
-      color: #fff;
-      overflow-x: hidden;
-      scroll-behavior: smooth;
-      line-height: 1.6;
-    }
-
-    /* --- BACKGROUND ELEMENTS --- */
-    #particles-js { position: fixed; inset: 0; z-index: 1; pointer-events: none; }
-    .blob-bg {
-      position: fixed; width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(56,189,248,0.12), transparent 70%);
-      filter: blur(80px); z-index: 0; top: -10%; left: -10%;
-    }
-
-    /* --- NAVIGATION --- */
-    nav {
-      position: fixed; top: 0; width: 100%; padding: 20px 5%;
-      display: flex; justify-content: space-between; align-items: center;
-      z-index: 1000; backdrop-filter: blur(15px); border-bottom: 1px solid var(--border);
-    }
-    .logo { font-weight: 800; font-size: 1.4rem; color: var(--primary); letter-spacing: -1px; }
-    .nav-links { display: flex; gap: 24px; }
-    .nav-links a { color: #94a3b8; text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: 0.3s; }
-    .nav-links a:hover { color: var(--primary); }
-
-    /* --- SECTIONS --- */
-    section { position: relative; z-index: 10; padding: 100px 5%; max-width: 1200px; margin: 0 auto; }
+    * { box-sizing: border-box; margin: 0; padding: 0; scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.6; overflow-x: hidden; }
     
-    /* --- HERO --- */
-    .hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
-    .brand-pill {
-      background: var(--glass-lighter); border: 1px solid var(--border);
-      padding: 8px 20px; border-radius: 100px; font-size: 0.85rem;
-      color: var(--primary); margin-bottom: 24px; display: inline-flex; align-items: center; gap: 8px;
+    body::before {
+      content: ''; position: fixed; inset: 0; pointer-events: none; z-index: 0;
+      background: radial-gradient(ellipse at 15% 10%, rgba(196,93,62,0.04) 0%, transparent 50%),
+                  radial-gradient(ellipse at 85% 80%, rgba(196,93,62,0.03) 0%, transparent 50%);
     }
-    h1 { font-size: clamp(3rem, 10vw, 5rem); font-weight: 800; line-height: 1.1; margin-bottom: 20px; }
-    .gradient-text { background: linear-gradient(90deg, #fff, var(--primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+    h1, h2, h3, h4, .serif { font-family: 'Fraunces', serif; font-weight: 700; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+    /* Navigation */
+    nav { height: 90px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1.5px solid var(--border); }
+    .logo { display: flex; align-items: center; gap: 12px; font-size: 1.5rem; color: var(--text-primary); text-decoration: none; }
+    .logo-icon { background: var(--accent); color: white; padding: 8px; border-radius: 12px; display: flex; }
+
+    /* Buttons */
+    .btn { display: inline-flex; align-items: center; gap: 12px; padding: 16px 32px; border-radius: 16px; text-decoration: none; font-weight: 600; transition: all 0.2s; cursor: pointer; border: none; font-size: 1rem; }
+    .btn-primary { background: var(--accent); color: white; box-shadow: 0 4px 14px rgba(196,93,62,0.3); }
+    .btn-outline { background: transparent; color: var(--text-primary); border: 1.5px solid var(--border); }
+    .btn:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+
+    /* Hero */
+    .hero { padding: 120px 0 60px; text-align: center; }
+    .hero h1 { font-size: clamp(2.8rem, 7vw, 4.5rem); line-height: 1.05; margin-bottom: 24px; }
+    .hero p { max-width: 650px; margin: 0 auto 40px; font-size: 1.25rem; color: var(--text-secondary); }
+
+    /* Action Section */
+    .action-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 100px; }
+    .action-card { background: var(--bg-card); border: 1.5px solid var(--border); border-radius: 24px; padding: 40px; text-align: center; transition: all 0.3s ease; display: flex; flex-direction: column; align-items: center; }
+    .action-card:hover { border-color: var(--accent); box-shadow: var(--shadow-lg); }
+
+    /* Terms Section */
+    #terms { padding: 80px 0; border-top: 1.5px solid var(--border); }
+    .section-title { font-size: 2.5rem; margin-bottom: 10px; }
+    .terms-box { display: grid; gap: 20px; }
+    .terms-item { background: var(--bg-card); border: 1.5px solid var(--border); padding: 30px; border-radius: 20px; }
+    .terms-item h4 { display: flex; align-items: center; gap: 10px; color: var(--accent); margin-bottom: 12px; font-size: 1.2rem; }
+    .terms-item p { font-size: 0.95rem; color: var(--text-secondary); }
+
+    /* Grid Services */
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; margin-bottom: 100px; }
+    .card { background: var(--bg-card); border: 1.5px solid var(--border); border-radius: 20px; padding: 32px; transition: all 0.3s ease; }
+    .card-icon { width: 44px; height: 44px; background: var(--accent-bg); color: var(--accent); border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 16px; }
+
+    /* API Modal Styles */
+    #apiModal {
+      position: fixed; inset: 0; background: rgba(44, 24, 16, 0.4); 
+      backdrop-filter: blur(4px); z-index: 1000; display: none;
+      align-items: center; justify-content: center; padding: 20px;
+    }
+    .modal-content {
+      background: var(--bg-primary); width: 100%; max-width: 500px;
+      border-radius: 24px; border: 1.5px solid var(--border);
+      padding: 40px; position: relative; box-shadow: var(--shadow-lg);
+    }
+    .close-modal { position: absolute; top: 20px; right: 20px; cursor: pointer; color: var(--text-muted); }
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; font-family: 'Fraunces', serif; margin-bottom: 8px; font-size: 0.9rem; }
+    .form-control { width: 100%; padding: 12px 16px; border-radius: 10px; border: 1.5px solid var(--border); background: white; font-family: 'DM Sans', sans-serif; }
     
-    /* --- GRID --- */
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 50px; }
-    .card {
-      background: var(--glass); border: 1px solid var(--border); padding: 40px; border-radius: 32px;
-      transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); position: relative; overflow: hidden;
-    }
-    .card:hover { transform: translateY(-10px); border-color: var(--primary); background: rgba(56, 189, 248, 0.05); }
+    #successMessage { display: none; text-align: center; }
 
-    /* --- INFO SECTIONS --- */
-    .section-title { font-size: 2.5rem; margin-bottom: 20px; font-weight: 800; }
-    .about-content { color: #94a3b8; font-size: 1.1rem; max-width: 800px; }
+    /* Footer */
+    footer { border-top: 1.5px solid var(--border); padding: 80px 0 40px; margin-top: 60px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1.2fr; gap: 40px; margin-bottom: 60px; }
+    .footer-col li { list-style: none; margin-bottom: 12px; font-size: 0.95rem; }
+    .footer-col a { color: var(--text-secondary); text-decoration: none; }
+    .dev-badge { background: var(--bg-secondary); padding: 24px; border-radius: 20px; border: 1px solid var(--border); text-align: center; }
 
-    /* --- TERMS LIST --- */
-    .terms-box { background: var(--glass-lighter); padding: 30px; border-radius: 24px; border: 1px solid var(--border); height: 400px; overflow-y: auto; text-align: left; }
-    .terms-item { margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); }
-    .terms-item h4 { color: var(--primary); margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
-    .terms-item p { font-size: 0.95rem; color: #cbd5e1; }
-
-    /* --- MOCKUP --- */
-    .mockup-container { perspective: 1000px; margin-bottom: 40px; }
-    .phone {
-      width: 280px; height: 570px; background: #000; border: 12px solid #1e293b;
-      border-radius: 45px; position: relative; transform: rotateY(-10deg) rotateX(5deg);
-      box-shadow: 20px 20px 60px rgba(0,0,0,0.5); transition: 0.5s;
-    }
-    .phone:hover { transform: rotateY(0deg) rotateX(0deg) scale(1.02); }
-    .screen { height: 100%; background: #020617; padding: 20px; display: flex; flex-direction: column; gap: 15px; }
-
-    /* --- BUTTONS --- */
-    .btn-primary {
-      padding: 18px 45px; background: #fff; color: #000; border-radius: 100px;
-      font-weight: 800; text-decoration: none; display: inline-flex; align-items: center;
-      gap: 12px; transition: 0.3s; margin-top: 30px;
-    }
-    .btn-primary:hover { background: var(--primary); transform: scale(1.05); box-shadow: 0 10px 30px rgba(56,189,248,0.4); }
-
-    /* --- FOOTER --- */
-    footer { padding: 80px 5%; background: rgba(0,0,0,0.3); border-top: 1px solid var(--border); }
-    .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; text-align: left; }
-    .dev-tag { background: linear-gradient(45deg, #1e293b, #0f172a); padding: 20px; border-radius: 16px; border: 1px solid var(--border); }
-
-    /* --- ANIMATIONS --- */
-    @keyframes pulse { 0% { opacity: 0.5; } 50% { opacity: 1; } 100% { opacity: 0.5; } }
-    .status-dot { width: 8px; height: 8px; background: var(--accent); border-radius: 50%; display: inline-block; animation: pulse 2s infinite; }
-
-    @media (max-width: 768px) {
-      .nav-links { display: none; }
-      h1 { font-size: 3rem; }
-      .section-title { font-size: 1.8rem; }
+    @media (max-width: 900px) {
+      .footer-grid { grid-template-columns: 1fr 1fr; }
     }
   </style>
 </head>
 <body>
 
-  <div class="blob-bg"></div>
-  <div id="particles-js"></div>
-
-  <nav>
-    <div class="logo">THAN LWIN PAY</div>
-    <div class="nav-links">
-      <a href="#about">About</a>
-      <a href="#services">Services</a>
-      <a href="#terms">Terms</a>
-    </div>
-    <div style="font-size: 0.8rem; font-weight: 700;"><span class="status-dot"></span> v1.0.4-Stable</div>
-  </nav>
-
-  <section class="hero" id="home">
-    <div class="brand-pill">
-      <i data-lucide="shield-check" size="16"></i> Secure Myanmar Digital
-    </div>
-    <h1>The Only <span class="gradient-text">Super App</span> <br>You Need in Myanmar.</h1>
-    <p style="color: #94a3b8; max-width: 650px; margin: 20px auto 40px;">Manage your Myanmar Kyat with military-grade security. From daily bills to gaming top-ups, experience the fastest digital wallet in the country.</p>
-    
-    <div class="mockup-container">
-        <div class="phone">
-            <div class="screen">
-                <div style="height: 120px; background: linear-gradient(135deg, var(--primary), var(--secondary)); border-radius: 20px; padding: 20px; text-align: left;">
-                    <p style="font-size: 0.6rem; opacity: 0.8; font-weight: 700;">TOTAL BALANCE</p>
-                    <h2 style="font-size: 1.6rem;">8,450,000 <small style="font-size: 0.7rem;">MMK</small></h2>
-                </div>
-                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px;">
-                    <div style="height: 60px; background: var(--glass-lighter); border-radius: 12px; display: flex; align-items: center; justify-content: center;"><i data-lucide="send" size="20"></i></div>
-                    <div style="height: 60px; background: var(--glass-lighter); border-radius: 12px; display: flex; align-items: center; justify-content: center;"><i data-lucide="wallet" size="20"></i></div>
-                    <div style="height: 60px; background: var(--glass-lighter); border-radius: 12px; display: flex; align-items: center; justify-content: center;"><i data-lucide="scan-line" size="20"></i></div>
-                </div>
-                <div style="flex:1; border-radius: 20px 20px 0 0; background: var(--glass-lighter); padding: 15px;">
-                    <p style="font-size: 0.7rem; font-weight: 700; margin-bottom: 10px; opacity: 0.5;">Recent Activities</p>
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                        <div style="width: 30px; height: 30px; background: var(--primary); border-radius: 8px; opacity: 0.2;"></div>
-                        <div style="flex:1; height: 10px; background: var(--border); margin: 10px; border-radius: 5px;"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <a href="https://pay.kyawgyi.club/public/thanlwinpay.apk" class="btn-primary">
-      <i data-lucide="download"></i> Download APK Now
-    </a>
-  </section>
-
-  <section id="about">
-    <div class="card" style="text-align: center; border: 1px solid var(--primary);">
-        <h2 class="section-title">About ThanLWinPay</h2>
-        <p class="about-content" style="margin: 0 auto;">
-            Than Lwin Pay is a next-generation Digital Payment Solution specifically designed for the Myanmar market. We bridge the gap between traditional currency and the digital economy, providing a seamless, high-speed interface for all your financial needs. 
-            <br><br>
-            Backed by the <b>ThanLwinPay</b> project infrastructure, we ensure that every transaction is encrypted and every MMK is accounted for.
-        </p>
-    </div>
-  </section>
-
-  <section id="terms">
-    <h2 class="section-title">Terms & Conditions</h2>
-    <p style="color: #94a3b8; margin-bottom: 30px;">စည်းကမ်းနှင့် သတ်မှတ်ချက်များကို သေချာစွာ ဖတ်ရှုပေးပါ။</p>
-    
-    <div class="terms-box">
-        <div class="terms-item">
-            <h4><i data-lucide="info"></i> 1. Service Definition</h4>
-            <p>Than Lwin Pay သည် ငွေလွှဲ၊ ငွေပေးချေခြင်း၊ ဖုန်းဘေလ်ဖြည့်ခြင်းနှင့် အခြားသော ဝန်ဆောင်မှုများအတွက် ဖန်တီးထားသော Digital Payment Application ဖြစ်ပါသည်။</p>
-        </div>
-        <div class="terms-item">
-            <h4><i data-lucide="user-plus"></i> 2. Account Registration</h4>
-            <p>အသုံးပြုသူသည် မိမိကိုယ်ပိုင် ဖုန်းနံပါတ်ဖြင့် မှန်ကန်စွာ အသုံးပြုရမည်။ လူတစ်ဦးလျှင် Account တစ်ခုသာ အသုံးပြုခွင့်ရှိသည်။ မမှန်ကန်သော အချက်အလက်များဖြင့် ဖွင့်ထားသော Account များကို ပိတ်သိမ်းနိုင်သည်။</p>
-        </div>
-        <div class="terms-item">
-            <h4><i data-lucide="alert-triangle"></i> 3. Restricted Use</h4>
-            <p>တရားမဝင် လုပ်ရပ်များအတွက် မအသုံးပြုရ။ ငွေကြေးလိမ်လည်မှု၊ ခိုးယူမှု၊ မမှန်ကန်သော လုပ်ရပ်များ မပြုလုပ်ရ။ App စနစ်ကို ဖျက်ဆီးရန်၊ ချိုးဖောက်ရန် မကြိုးစားရ။</p>
-        </div>
-        <div class="terms-item">
-            <h4><i data-lucide="banknote"></i> 4. Fees & Transfers</h4>
-            <p>Account to Account ငွေလွှဲခြင်း – အခမဲ့ (Free)။ Agent မှ Cash Out ပြုလုပ်ရာတွင် 0.5% အခကြေးငွေ ကောက်ခံပါသည်။ User မှားယွင်းစွာ ငွေလွှဲခြင်းအတွက် Than Lwin Pay မှ တာဝန်မယူပါ။</p>
-        </div>
-        <div class="terms-item">
-            <h4><i data-lucide="shield-check"></i> 5. Privacy</h4>
-            <p>User အချက်အလက်များကို လုံခြုံစွာ သိမ်းဆည်းထားမည်။ User ခွင့်ပြုချက်မရှိဘဲ Third Party သို့ မမျှဝေပါ။</p>
-        </div>
-    </div>
-  </section>
-
-  <footer id="contact">
-    <div class="footer-grid">
-      <div>
-        <h3 style="margin-bottom: 20px; color: var(--primary);">ThanLWinPay</h3>
-        <p style="color: #64748b; font-size: 0.9rem;">The most trusted Super App ecosystem in Myanmar. Build for the people, by the people.</p>
-      </div>
+  <div class="container">
+    <nav>
+      <a href="#" class="logo">
+        <div class="logo-icon"><i data-lucide="feather"></i></div>
+        <span class="serif">ThanLWinPay</span>
+      </a>
       
-      <div class="dev-tag">
-        <h4 style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; color: var(--accent);">Developer</h4>
-        <p style="font-weight: 800; font-size: 1.1rem;">Rez</p>
-        <p style="font-size: 0.8rem; opacity: 0.6;">Project ID: TZ-132</p>
+    </nav>
+
+    <section class="hero">
+      <h1>The All-in-One <span style="color:var(--accent)">Digital Hub.</span></h1>
+      <p>Topups, data, voice packages, game items, bills, and payment exchange. Fast, secure, and always local.</p>
+    </section>
+
+    <section class="action-grid">
+      <div class="action-card">
+        <div class="card-icon" style="width: 60px; height: 60px; margin-bottom: 24px;"><i data-lucide="smartphone" size="32"></i></div>
+        <h3 class="serif">Android Application</h3>
+        <p>Get the full experience on your mobile. Fast transactions and instant notifications.</p>
+        <a href="https://app.thanlwinpay.com/public/thanlwinpay.apk" class="btn btn-primary" style="width: 100%; justify-content: center;">
+            <i data-lucide="download"></i> Download APK
+        </a>
       </div>
 
-    </div>
-    
-    <div style="margin-top: 60px; padding-top: 30px; border-top: 1px solid var(--border); text-align: center; font-size: 0.8rem; color: #475569;">
-        ThanLWinPay Ecosystem © 2026 • Secure & Reliable
-    </div>
-  </footer>
+      <div class="action-card">
+        <div class="card-icon" style="width: 60px; height: 60px; margin-bottom: 24px;"><i data-lucide="layout" size="32"></i></div>
+        <h3 class="serif">Web Portal</h3>
+        <p>Manage your account, view history, and process payments directly from your browser.</p>
+        <a href="https://www.thanlwinpay.com" class="btn btn-outline" style="width: 100%; justify-content: center;">
+            <i data-lucide="external-link"></i> Launch Portal
+        </a>
+      </div>
+    </section>
 
-  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <section class="grid">
+      <div class="card">
+        <div class="card-icon"><i data-lucide="phone"></i></div>
+        <h3>Topup & Data</h3>
+        <p>Instant mobile top-up and affordable voice/data packages for all local networks.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon"><i data-lucide="gamepad"></i></div>
+        <h3>Game Items</h3>
+        <p>Fast credits and items for popular mobile and PC gaming titles.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon"><i data-lucide="zap"></i></div>
+        <h3>Utility Bills</h3>
+        <p>Pay your wifi subscriptions, meter bills, and other services in seconds.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon"><i data-lucide="refresh-cw"></i></div>
+        <h3>Payment Exchange</h3>
+        <p>Seamlessly manage and exchange your digital funds across platforms.</p>
+      </div>
+    </section>
+
+    <!-- TERMS & CONDITIONS SECTION -->
+    <section id="terms">
+      <h2 class="serif section-title">Terms & Conditions</h2>
+      <p style="color: var(--text-muted); margin-bottom: 40px;">စည်းကမ်းနှင့် သတ်မှတ်ချက်များကို သေချာစွာ ဖတ်ရှုပေးပါ။</p>
+      
+      <div class="terms-box">
+          <div class="terms-item">
+              <h4><i data-lucide="info"></i> 1. Service Definition</h4>
+              <p>Than Lwin Pay သည် ငွေလွှဲ၊ ငွေပေးချေခြင်း၊ ဖုန်းဘေလ်ဖြည့်ခြင်းနှင့် အခြားသော ဝန်ဆောင်မှုများအတွက် ဖန်တီးထားသော Digital Payment Application ဖြစ်ပါသည်။</p>
+          </div>
+          <div class="terms-item">
+              <h4><i data-lucide="user-plus"></i> 2. Account Registration</h4>
+              <p>အသုံးပြုသူသည် မိမိကိုယ်ပိုင် ဖုန်းနံပါတ်ဖြင့် မှန်ကန်စွာ အသုံးပြုရမည်။ လူတစ်ဦးလျှင် Account တစ်ခုသာ အသုံးပြုခွင့်ရှိသည်။ မမှန်ကန်သော အချက်အလက်များဖြင့် ဖွင့်ထားသော Account များကို ပိတ်သိမ်းနိုင်သည်။</p>
+          </div>
+          <div class="terms-item">
+              <h4><i data-lucide="alert-triangle"></i> 3. Restricted Use</h4>
+              <p>တရားမဝင် လုပ်ရပ်များအတွက် မအသုံးပြုရ။ ငွေကြေးလိမ်လည်မှု၊ ခိုးယူမှု၊ မမှန်ကန်သော လုပ်ရပ်များ မပြုလုပ်ရ။ App စနစ်ကို ဖျက်ဆီးရန်၊ ချိုးဖောက်ရန် မကြိုးစားရ။</p>
+          </div>
+          <div class="terms-item">
+              <h4><i data-lucide="banknote"></i> 4. Fees & Transfers</h4>
+              <p>Account to Account ငွေလွှဲခြင်း – အခမဲ့ (Free)။ Agent မှ Cash Out ပြုလုပ်ရာတွင် 0.5% အခကြေးငွေ ကောက်ခံပါသည်။ User မှားယွင်းစွာ ငွေလွှဲခြင်းအတွက် Than Lwin Pay မှ တာဝန်မယူပါ။</p>
+          </div>
+          <div class="terms-item">
+              <h4><i data-lucide="shield-check"></i> 5. Privacy</h4>
+              <p>User အချက်အလက်များကို လုံခြုံစွာ သိမ်းဆည်းထားမည်။ User ခွင့်ပြုချက်မရှိဘဲ Third Party သို့ မမျှဝေပါ။</p>
+          </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4 class="serif" style="margin-bottom: 15px;">ThanLWinPay</h4>
+          <p style="font-size:0.95rem;">The leading local ecosystem for digital utility and lifestyle payments.</p>
+        </div>
+        <div class="footer-col">
+          <h4 class="serif" style="margin-bottom: 15px;">Ecosystem</h4>
+          <ul>
+            <li><a href="https://www.thanlwinpay.com">Web Portal</a></li>
+            <li><a href="https://app.thanlwinpay.com">Android App</a></li>
+            <li><a href="javascript:void(0)" onclick="openModal()">Request API Access</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4 class="serif" style="margin-bottom: 15px;">Legal</h4>
+          <ul>
+            <li><a href="#terms">Privacy Policy</a></li>
+            <li><a href="#terms">Terms of Use</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <div class="dev-badge">
+            <h4 class="serif" style="font-size: 0.9rem; color: var(--accent); margin-bottom: 5px;">Developer</h4>
+            <p style="font-weight: 700; font-size: 1.2rem;">Xalyon</p>
+            <p style="font-size: 0.8rem; color: var(--text-muted); margin-top: 4px;">https://t.me/x0x7F</p>
+          </div>
+        </div>
+      </div>
+      <div style="text-align: center; border-top: 1px solid var(--border); padding-top: 40px; color: var(--text-muted); font-size: 0.85rem;">
+        ThanLWinPay Ecosystem © 2026 • Simple. Fast. Local.
+      </div>
+    </footer>
+  </div>
+
+  <!-- API MODAL -->
+  <div id="apiModal">
+    <div class="modal-content">
+      <div class="close-modal" onclick="closeModal()"><i data-lucide="x"></i></div>
+      <div id="formContainer">
+        <h2 class="serif" style="margin-bottom: 10px;">API Access Request</h2>
+        <p style="font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 25px;">Provide your business details for API integration.</p>
+        <form id="apiForm">
+          <div class="form-group"><label>Full Name</label><input type="text" name="name" class="form-control" required></div>
+          <div class="form-group"><label>Contact Email</label><input type="email" name="email" class="form-control" required></div>
+          <div class="form-group"><label>Usage Purpose</label><textarea name="message" class="form-control" required></textarea></div>
+          <button type="submit" id="submitBtn" class="btn btn-primary" style="width: 100%; justify-content: center;">Submit Request</button>
+        </form>
+      </div>
+      <div id="successMessage">
+        <i data-lucide="check-circle-2" size="64" style="color:#10b981; margin-bottom:15px;"></i>
+        <h2 class="serif">Request Sent!</h2>
+        <p style="color: var(--text-secondary); margin: 15px 0 25px;">Thank you. Our team will contact you shortly.</p>
+        <button onclick="closeModal()" class="btn btn-outline" style="width: 100%; justify-content: center;">Close Window</button>
+      </div>
+    </div>
+  </div>
+
   <script>
     lucide.createIcons();
+    const apiForm = document.getElementById('apiForm');
+    const formContainer = document.getElementById('formContainer');
+    const successMessage = document.getElementById('successMessage');
+    const submitBtn = document.getElementById('submitBtn');
 
-    // Scroll Reveal Config
-    ScrollReveal().reveal('.card, .section-title, .about-content, .terms-box', {
-        delay: 200,
-        distance: '50px',
-        origin: 'bottom',
-        duration: 1000,
-        interval: 100
-    });
+    function openModal() { document.getElementById('apiModal').style.display = 'flex'; document.body.style.overflow = 'hidden'; formContainer.style.display = 'block'; successMessage.style.display = 'none'; }
+    function closeModal() { document.getElementById('apiModal').style.display = 'none'; document.body.style.overflow = 'auto'; }
 
-    particlesJS("particles-js", {
-      "particles": {
-        "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
-        "color": { "value": "#38bdf8" },
-        "opacity": { "value": 0.2 },
-        "size": { "value": 2 },
-        "line_linked": { "enable": true, "distance": 150, "color": "#38bdf8", "opacity": 0.1, "width": 1 },
-        "move": { "enable": true, "speed": 1 }
-      }
+    apiForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = 'Sending...';
+      try {
+        const response = await fetch('https://formspree.io/f/mpqjlrkg', { method: 'POST', body: new FormData(apiForm), headers: { 'Accept': 'application/json' } });
+        if (response.ok) { formContainer.style.display = 'none'; successMessage.style.display = 'block'; lucide.createIcons(); }
+        else { alert('Error. Please try again.'); submitBtn.disabled = false; submitBtn.innerHTML = 'Submit Request'; }
+      } catch (error) { alert('Connection error.'); submitBtn.disabled = false; submitBtn.innerHTML = 'Submit Request'; }
     });
-
-    // Blob Movement
-    const blob = document.querySelector('.blob-bg');
-    document.addEventListener('mousemove', (e) => {
-      blob.style.left = `${e.clientX - 300}px`;
-      blob.style.top = `${e.clientY - 300}px`;
-    });
+    
+    window.onclick = function(event) { if (event.target == document.getElementById('apiModal')) closeModal(); }
+    ScrollReveal().reveal('.action-card, .card, .terms-item', { delay: 100, distance: '30px', origin: 'bottom', interval: 100 });
   </script>
 </body>
 </html>
